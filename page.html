@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    
+  </head>
+  
+  <body>
+    <div id="output"></div>  
+    <h2>Web application</h2>
+    <h3>For Visma</h3>
+    
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSew1tZM_uC-CIXQI5Eom16rtkk5ovQ-bh2ACd5irz8xh1hGNw/viewform?embedded=true" width="640" height="884" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    
+    <div class="container">
+     <table id="testTable">      
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Name</th>
+          <th>Language</th>
+          <th>Database</th>
+        </tr>
+      </thead>     
+      <tbody id="table-body"></tbody>
+     </table>   
+   </div>
+   
+  </body>
+   <script>
+     google.script.run.withSuccessHandler(onSuccess).getTableData();
+     
+     function onSuccess(dataArray){    
+          var tbody = document.getElementById("table-body");     
+          dataArray.forEach(function(r){
+             var row = document.createElement("tr");
+             var col1 = document.createElement("td");
+             col1.textContent = r[0];
+             var col2 = document.createElement("td");
+             col2.textContent = r[1];
+             var col3 = document.createElement("td");
+             col3.textContent = r[2];     
+             row.appendChild(col1);
+             row.appendChild(col2);
+             row.appendChild(col3);
+             tbody.appendChild(row);
+         });
+    }
+    </script>
+</html>
